@@ -43,7 +43,7 @@
 ;; 1.0.1 Enforce C-h to delete-backward-char.
 ;; 1.0.0 First released.
 
-;;; Code:
+;; Code goes here
 
 ;; mode
 (defvar drill-instructor nil
@@ -53,9 +53,8 @@
   "drill-instructor-global")
 
 (defvar drill-instructor-unset-major-mode-list '(term-mode)
-  "Drill instructor unset list")
+  "Drill instructor unset major mode list")
 
-;; setq minor-mode-alist
 (if (not (assq 'drill-instructor minor-mode-alist))
     (setq minor-mode-alist
           (cons '(drill-instructor " Drill")
@@ -85,7 +84,7 @@
     )
 
 (defun drill-instructor-switch ()
-  "drill-instructor-switch"
+  "Swhich drill-instructor mode"
   (if drill-instructor-global
         (if (memq major-mode drill-instructor-unset-major-mode-list)
           (setq drill-instructor nil)
@@ -117,44 +116,49 @@
     (define-key map (kbd "DEL") 'drill-instructor-alert-del)
     (define-key map "\C-h" 'delete-backward-char);C-h -> delete-backward-char
     map)
-  "Key maps")
+  "Key maps for drill-instructor")
 
 ;;;###autoload
 (defun drill-instructor-alert-up ()
+  "Kill up-key and alert"
   (interactive)
   (message "Don't use up-key!!! Press C-p!! M-p!!!"))
 
 ;;;###autoload
 (defun drill-instructor-alert-down ()
+  "Kill down-key and alert"
   (interactive)
   (message "Don't use down-key!!! Press C-n!! M-n!!!"))
 
 ;;;###autoload
 (defun drill-instructor-alert-right ()
+  "Kill light-key and alert"
   (interactive)
   (message "Don't use right-key!!! Press C-f!! C-f!!!"))
 
 ;;;###autoload
 (defun drill-instructor-alert-left ()
+  "Kill left-key and alert"
   (interactive)
   (message "Don't use left-key!!! Press C-b!! C-b!!!"))
 
 ;;;###autoload
 (defun drill-instructor-alert-del ()
+  "Kill DEL key and alert"
   (interactive)
   (message "Don't use DEL!!! Press C-h!! C-h!!!"))
 
 ;;;###autoload
 (defun drill-instructor-alert-return ()
+  "Kill RETURN key and alert"
   (interactive)
   (message "Don't use RETURN!!! Press C-m!! C-m!!!"))
 
 ;;;###autoload
 (defun drill-instructor-alert-tab ()
+  "Kill TAB key and alert"
   (interactive)
   (message "Don't use TAB!!! Press C-i!! C-i!!!"))
-
-
 
 (provide 'drill-instructor)
 ;;; drill-instructor.el ends here
