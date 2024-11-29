@@ -1,7 +1,7 @@
 ;;; drill-instructor.el ---  Enforce key-bind of Emacs.
 ;; -*- Mode: Emacs-Lisp -*-
 
-;; Copyright (C) 2008-2014 by 101000code/101000LAB
+;; Copyright (C) 2008-2024 by 101000code/101000LAB
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 ;; along with this program; if not, write to the Free Software
 ;; Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 ;;
-;; Version: 1.1.5
+;; Version: 1.1.6
 ;; Author: k1LoW (Kenichirou Oyama), <k1lowxb [at] gmail [dot] com> <k1low [at] 101000lab [dot] org>
-;; URL: https://github.com/k1LoW/emacs-drill-instructor/wiki, http://code.101000lab.org, http://trac.codechecki.in
+;; URL: https://github.com/k1LoW/emacs-drill-instructor
 
 ;;; Install
 ;; Put this file into load-path'ed directory, and byte compile it if
@@ -33,6 +33,7 @@
 ;; (setq drill-instructor-global t)
 
 ;;; Change Log
+;; 1.1.6 Add defadvice set-window-configuration
 ;; 1.1.5 Add autoload
 ;; 1.1.4 Enforce TAB to C-i. (use window-system)
 ;; 1.1.3 keymap bug fix.
@@ -105,6 +106,10 @@
 
 (defadvice delete-window (after drill-instructor-delete-window activate)
   "drill-instructor-delete-window"
+  (drill-instructor-switch))
+
+(defadvice set-window-configuration (after drill-instructor-set-window-configuration activate)
+  "drill-instructor-set-window-configuration"
   (drill-instructor-switch))
 
 (defvar drill-instructor-key-map
